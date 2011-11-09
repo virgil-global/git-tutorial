@@ -1,4 +1,4 @@
-<?
+<?php
 class MoviePlotGenerator {
 	public static $adjectives = array('sadistic',
 									  'diminuitive',
@@ -55,9 +55,13 @@ class MoviePlotGenerator {
 	 * @param array $arr
 	 * @return mixed
 	 */	
-	protected function getRandom($arr)
+	protected function getRandom(&$arr)
 	{
-		return $arr[rand(0, count($arr) - 1)];
+		$key = rand(0, count($arr) - 1);
+		$value = $arr[$key];
+		unset($arr[$key]);
+		$arr = array_values($arr);
+		return $value;
 	}
 		
 }
